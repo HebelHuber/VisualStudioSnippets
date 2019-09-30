@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>public Property + OnChanged Event(new Value as parameter)</Title>
+			<Shortcut>ms_PuplicPropertyPlusEventWithValueParameter</Shortcut>
+			<Description>Create a Property that raises an Event when changed. Event Parameter is the new value.</Description>
+			<Author>Lukas Kiefer</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal>
+					<ID>VarType</ID>
+					<Type></Type>
+					<ToolTip>Property Type</ToolTip>
+					<Default>string</Default>
+				</Literal>
+				<Object>
+					<ID>VarName</ID>
+					<Type>Object</Type>
+					<ToolTip>Property Name</ToolTip>
+					<Default>newPropertyValue</Default>
+				</Object>
+			</Declarations>
+			<Code Language="CSharp"><![CDATA[private $VarType$ _$VarName$;
+				public $VarType$ $VarName$
+				{
+						get { return _$VarName$; }
+						set { if (value != _$VarName$)
+						{
+							_$VarName$ = value;
+							On$VarName$Changed(_$VarName$);
+						}}
+				}
+				
+				public static event Action<$VarType$> On$VarName$Changed = delegate { };]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

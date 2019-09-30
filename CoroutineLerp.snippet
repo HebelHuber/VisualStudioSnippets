@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>lerping Coroutine</Title>
+			<Shortcut>ms_Coroutine_Lerp</Shortcut>
+			<Description>Create a lerping coroutine.</Description>
+			<Author>Lukas Kiefer</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>    
+
+<Snippet>
+			<Declarations>
+				<Object>
+					<ID>Name</ID>
+					<Type>Object</Type>
+					<ToolTip>Coroutine Name</ToolTip>
+					<Default>myCoroutine</Default>
+				</Object>
+			</Declarations>
+			<Code Language="CSharp">
+							<![CDATA[private IEnumerator $Name$(float TimeInSeconds = 1)
+	{
+		float lerper = 0;
+		float LerpVal;
+
+		while (lerper < 1)
+		{
+			lerper = Mathf.Clamp01(lerper + Time.deltaTime * (1f / TimeInSeconds));
+
+			// hard lerp
+			LerpVal = lerper;
+			// smoothed lerp
+			LerpVal = Mathf.SmoothStep(0, 1, lerper);
+			// supersmoothed lerp
+			LerpVal = Mathf.SmoothStep(0, 1, Mathf.SmoothStep(0, 1, lerper));
+
+			yield return null;
+		}
+	}
+				]]></Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

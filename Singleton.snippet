@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>Singleton</Title>
+			<Shortcut>ms_Singleton</Shortcut>
+			<Description>Make this class a singleton that destroys other instances and has a static accessor</Description>
+			<Author>Lukas Kiefer</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>    
+
+<Snippet>
+	<Imports>
+		<Import>
+			<Namespace>System</Namespace>
+		</Import>
+	</Imports>
+			<Declarations>
+				<Literal default="true" Editable="false">
+					<ID>classname</ID>
+					<ToolTip>Class name</ToolTip>
+					<Function>ClassName()</Function>
+					<Default>ClassNamePlaceholder</Default>
+				</Literal>
+			</Declarations>
+	<Code Language="CSharp">
+					<![CDATA[#region Singleton Pattern
+    private static $classname$ _Instance;
+    public static $classname$ Instance
+    {
+        get
+        {
+            // Für Editor Time :)
+            if (_Instance == null) _Instance = FindObjectOfType<$classname$>();
+            return _Instance;
+        }
+    }
+          
+
+private void Awake()
+{
+// wenn ein zweiter angeht wird er gekillt, der erste bleibt
+if (FindObjectsOfType<$classname$>().Length > 1)
+  {
+    Destroy(gameObject);
+    return;
+  }
+
+_Instance = this;
+}
+#endregion
+$end$]]>
+				</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

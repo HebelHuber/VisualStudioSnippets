@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>private reference to a component with automatic finding</Title>
+			<Shortcut>ms_pr_FindObjectOfType</Shortcut>
+			<Description>Create a private variable to a local component and automatically cache it.</Description>
+			<Author>Lukas Kiefer</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>VarType</ID>
+					<Type></Type>
+					<ToolTip>Property Type</ToolTip>
+					<Default>string</Default>
+				</Literal>
+				<Object>
+					<ID>VarName</ID>
+					<Type>Object</Type>
+					<ToolTip>Property Name</ToolTip>
+					<Default>newPropertyValue</Default>
+				</Object>
+			</Declarations>
+			<Code Language="CSharp">
+          <![CDATA[private $VarType$ _$VarName$;
+    private $VarType$ $VarName$
+    {
+        get
+        {
+            if (_$VarName$ == null) _$VarName$ = FindObjectOfType<$VarType$>();
+            return _$VarName$;
+        }
+    }]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

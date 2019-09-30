@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>public Property + OnChanged Event(class parameter)</Title>
+			<Shortcut>ms_PuplicPropertyPlusEventWithClassParameter</Shortcut>
+			<Description>Create a Property that raises an Event when changed. Event Parameter is the class instance.</Description>
+			<Author>Lukas Kiefer</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal>
+					<ID>VarType</ID>
+					<Type></Type>
+					<ToolTip>Property Type</ToolTip>
+					<Default>string</Default>
+				</Literal>
+				<Literal default="true" Editable="false">
+					<ID>classname</ID>
+					<ToolTip>Class name</ToolTip>
+					<Function>ClassName()</Function>
+					<Default>ClassNamePlaceholder</Default>
+				</Literal>
+				<Object>
+					<ID>VarName</ID>
+					<Type>Object</Type>
+					<ToolTip>Property Name</ToolTip>
+					<Default>newPropertyValue</Default>
+				</Object>
+			</Declarations>
+			<Code Language="CSharp"><![CDATA[private $VarType$ _$VarName$;
+				public $VarType$ $VarName$
+				{
+						get { return _$VarName$; }
+						set { if (value != _$VarName$)
+						{
+							_$VarName$ = value;
+							On$VarName$Changed(this);
+						}}
+				}
+				
+				public static event Action<$classname$> On$VarName$Changed = delegate { };]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

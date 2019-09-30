@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>Add Custom Editor</Title>
+			<Shortcut>ms_CustomEditor</Shortcut>
+			<Description>Adds Custom Editor, Use outside of class</Description>
+			<Author>Lukas Kiefer</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>    
+
+<Snippet>
+  <Imports>
+    <!--<Import>
+      <Namespace>UnityEditor</Namespace>
+    </Import>-->
+  </Imports>
+	<Declarations>
+		<Literal>
+			<ID>classname</ID>
+			<Type></Type>
+			<ToolTip>Class to attach Editor</ToolTip>
+			<Function>ClassName()</Function>
+			<Default>MyClassName</Default>
+		</Literal>
+      <!--<Literal default="true" Editable="false">
+        <ID>classname</ID>
+        <ToolTip>Class name</ToolTip>
+        <Function>ClassName()</Function>
+        <Default>ClassNamePlaceholder</Default>
+      </Literal>-->
+	</Declarations>
+			<Code Language="CSharp">
+      <![CDATA[#if UNITY_EDITOR
+[CustomEditor(typeof($classname$))]
+public class $classname$_ED : Editor
+{
+	$classname$ t;
+
+	public override void OnInspectorGUI()
+	{
+		base.OnInspectorGUI();
+		t = ($classname$)target;
+    
+    EditorGUIUtility.labelWidth = 1;
+    EditorGUIUtility.fieldWidth = 1;
+		
+		$end$
+	}
+}
+#endif]]></Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>
